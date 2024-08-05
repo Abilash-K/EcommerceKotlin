@@ -33,6 +33,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -48,4 +52,14 @@ dependencies {
 
     //splashScreen
     implementation(libs.androidx.core.splashscreen)
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
+    //okHttp
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
+
 }
