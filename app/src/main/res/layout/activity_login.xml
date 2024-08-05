@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:background="@color/primaryBlack"
+    >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="120dp"
+        android:background="#080808"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:cardCornerRadius="40dp"
+        android:layout_marginBottom="-80dp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#080808">
+
+            <TextView
+                android:id="@+id/welcome"
+                android:layout_width="185dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="52dp"
+                android:fontFamily="@font/sora_bold"
+                android:gravity="top"
+                android:lineSpacingExtra="1sp"
+                android:text="Welcome Back"
+                android:textAppearance="@style/onboarding_heading"
+                android:translationY="-0.48sp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/enter_your_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_horizontal|top"
+                android:lineSpacingExtra="4sp"
+                android:text="Enter your details below"
+                android:textAppearance="@style/onboarding_body"
+                android:translationY="-2.03sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/welcome" />
+
+            <EditText
+                android:id="@+id/login_email"
+                android:layout_width="327dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="52dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/baseline_email_24"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/inter"
+                android:hint="Enter your Email"
+                android:paddingLeft="10dp"
+                android:textColorHint="#636363"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/enter_your_" />
+
+
+            <EditText
+                android:id="@+id/login_password"
+                android:layout_width="327dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/inter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_email"
+                android:background="@drawable/custom_input"
+                android:hint="Enter your Password"
+                android:textColorHint="#636363"
+                android:drawableLeft="@drawable/baseline_lock_24"
+                android:paddingLeft="10dp"
+                android:drawablePadding="10dp"
+                />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:background="@drawable/custom_button"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Log In"
+                android:textAppearance="@style/onboarding_button_text"
+                android:textColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_password" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
