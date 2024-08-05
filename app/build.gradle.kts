@@ -47,5 +47,5 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     //splashScreen
-
+    implementation(libs.androidx.core.splashscreen)
 }

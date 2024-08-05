@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primaryColor">#D7FC70</color>
+    <color name="primaryBlack">#111111</color>
+
+    //Text
+    <color name="headingColor">#FBFBFB</color>
+
+
 </resources>

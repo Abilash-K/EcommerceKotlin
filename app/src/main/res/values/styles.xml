@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="onboarding_heading">
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">@color/headingColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="onboarding_body">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">#808080</item>
+    </style>
+
+    <style name="onboarding_button_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="onboarding_login">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">#FBFBFB</item>
+    </style>
+
+</resources>
