@@ -61,5 +61,12 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
 
+    //Navigation
+    // Kotlin
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    // Feature module Support
+    implementation(libs.androidx.navigation.dynamic.features.fragment)
+
 
 }

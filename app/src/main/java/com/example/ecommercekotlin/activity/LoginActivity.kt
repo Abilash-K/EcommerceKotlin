@@ -18,16 +18,11 @@ class LoginActivity : AppCompatActivity() {
     //ViewBinding
     private lateinit var binding : ActivityLoginBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //Initialize binding
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-
-
 
         binding.loginButton.setOnClickListener {
             val username = binding.loginEmail.text.toString()
@@ -35,12 +30,11 @@ class LoginActivity : AppCompatActivity() {
             loginViewModel.login(username,password)
         }
 
-
         //loginViewModel
         loginViewModel.loginResponse.observe(this, Observer { response ->
             binding.loginProgress.visibility = android.view.View.GONE
-            Toast.makeText(this,"Login Successful: ${response.username}", Toast.LENGTH_SHORT).show()
-            Log.d("LoginResponse", "Success: ${response.token}")
+            Toast.makeText(this,"Login Successful: ${response.firstName} ${response.lastName}", Toast.LENGTH_SHORT).show()
+            //Log.d("LoginResponse", "Success: ${response.token}")
         })
 
         //LoginError
@@ -54,7 +48,5 @@ class LoginActivity : AppCompatActivity() {
             binding.loginProgress.visibility = if (isLoading) android.view.View.VISIBLE else android.view.View.GONE
         })
 
-//        //SampleTest
-//        loginViewModel.login("emilys", "emilyspass")
     }
 }
