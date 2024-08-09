@@ -136,6 +136,7 @@
         android:textColor="#A1BD54"
         android:textSize="14sp"
         android:clickable="true"
+        android:background="?attr/selectableItemBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 

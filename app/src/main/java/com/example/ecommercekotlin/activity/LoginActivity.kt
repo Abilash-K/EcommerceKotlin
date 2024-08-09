@@ -1,11 +1,13 @@
 package com.example.ecommercekotlin.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ecommercekotlin.databinding.ActivityLoginBinding
+import com.example.ecommercekotlin.utility.TokenManager
 import com.example.ecommercekotlin.viewmodel.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -17,6 +19,14 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Check for Token
+        val token = TokenManager.getToken(this)
+        if (token != null){
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         //Initialize binding
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -51,6 +61,14 @@ class LoginActivity : AppCompatActivity() {
                 "Login Successful: ${response.firstName} ${response.lastName}",
                 Toast.LENGTH_SHORT
             ).show()
+            //save token
+            TokenManager.saveTokens(this,response.token,response.refreshToken)
+
+            //navigate
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+
             //Log.d("LoginResponse", "Success: ${response.token}")
         }
 

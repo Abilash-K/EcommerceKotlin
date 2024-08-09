@@ -19,6 +19,7 @@
             android:name=".activity.HomeActivity"
             android:exported="false"
             android:theme="@style/Theme.EcommerceKotlin"
+            android:windowSoftInputMode="adjustPan"
             />
         <activity
             android:name=".activity.LoginActivity"
