@@ -9,21 +9,21 @@
     <!-- Individual Indicator -->
     <View
         android:id="@+id/indicator_1"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         android:background="@drawable/indicator_inactive"/>
 
     <View
         android:id="@+id/indicator_2"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/indicator_inactive"/>
 
     <View
         android:id="@+id/indicator_3"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/indicator_inactive"/>
 

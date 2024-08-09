@@ -9,4 +9,7 @@
     <string name="cart">Cart</string>
     <string name="profile">Profile</string>
     <string name="see_all">See All</string>
+    <string name="logo">logo</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="enter_your_details_below">Enter your details below</string>
 </resources>
