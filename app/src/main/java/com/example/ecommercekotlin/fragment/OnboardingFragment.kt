@@ -45,6 +45,7 @@ class OnboardingFragment : Fragment() {
       viewPager.registerOnPageChangeCallback(object  : ViewPager2.OnPageChangeCallback(){
           override fun onPageSelected(position: Int) {
               super.onPageSelected(position)
+              updateIndicator(position)
               nextButton.text = if (position == adapter.itemCount - 1) "Finish" else "Next"
           }
       })
@@ -64,6 +65,16 @@ class OnboardingFragment : Fragment() {
 
     }
 
+    private fun updateIndicator(position: Int){
+        val indicator1 = view?.findViewById<View>(R.id.indicator_1)
+        val indicator2 = view?.findViewById<View>(R.id.indicator_2)
+        val indicator3 = view?.findViewById<View>(R.id.indicator_3)
+
+        indicator1?.setBackgroundResource(if (position == 0) R.drawable.indicator_active else R.drawable.indicator_inactive)
+        indicator2?.setBackgroundResource(if (position == 1) R.drawable.indicator_active else R.drawable.indicator_inactive)
+        indicator3?.setBackgroundResource(if (position == 2) R.drawable.indicator_active else R.drawable.indicator_inactive)
+
+    }
 
 }
 

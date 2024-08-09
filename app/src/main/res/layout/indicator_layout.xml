@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center">
+
+    <!-- Individual Indicator -->
+    <View
+        android:id="@+id/indicator_1"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:background="@drawable/indicator_inactive"/>
+
+    <View
+        android:id="@+id/indicator_2"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/indicator_inactive"/>
+
+    <View
+        android:id="@+id/indicator_3"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/indicator_inactive"/>
+
+</LinearLayout>
