@@ -3,10 +3,13 @@ package com.example.ecommercekotlin.server
 import com.example.ecommercekotlin.model.category.Category
 import com.example.ecommercekotlin.model.login.LoginRequest
 import com.example.ecommercekotlin.model.login.LoginResponse
+import com.example.ecommercekotlin.model.product.Product
+import com.example.ecommercekotlin.model.product.ProductResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ApiServices {
 
@@ -15,5 +18,6 @@ interface ApiServices {
 
     @GET("products/categories")
     fun getCategories(): Call<List<Category>>
+
 
 }

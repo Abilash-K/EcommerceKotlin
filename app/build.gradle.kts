@@ -68,5 +68,8 @@ dependencies {
     // Feature module Support
     implementation(libs.androidx.navigation.dynamic.features.fragment)
 
+    //Glide
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+
 
 }

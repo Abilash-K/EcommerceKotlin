@@ -19,5 +19,5 @@
     <string name="flash_sale_everyday">Flash Sale Everyday!!</string>
     <string name="electronics_deals">Electronics Deals</string>
     <string name="home_profile">Home Profile</string>
-    <string name="back_button">Back</string>
+    <string name="product_price">$ %s</string>
 </resources>
