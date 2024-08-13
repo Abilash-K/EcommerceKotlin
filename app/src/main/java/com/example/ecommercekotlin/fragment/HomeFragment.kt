@@ -7,15 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.ecommercekotlin.R
+import com.example.ecommercekotlin.adapter.ProductAdapter
 import com.example.ecommercekotlin.databinding.FragmentHomeBinding
+import com.example.ecommercekotlin.viewmodel.ProductViewModel
 import com.example.ecommercekotlin.viewmodel.ProfileViewModel
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val profileViewModel: ProfileViewModel by viewModels()
+    private val productViewModel: ProductViewModel by viewModels()
+    private lateinit var productAdapter: ProductAdapter
+    private lateinit var topProducts : ProductAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,5 +58,46 @@ class HomeFragment : Fragment() {
             // Handle the error (e.g., show a Toast)
             Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
         }
+
+        //setup Recycler View
+        productAdapter = ProductAdapter(emptyList())
+        binding.homeRecyclerView.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = productAdapter
+        }
+
+
+        //fetch products
+        productViewModel.fetchProducts("laptops")
+        productViewModel.products.observe(viewLifecycleOwner) { products ->
+            productAdapter = ProductAdapter(products)
+            binding.homeRecyclerView.adapter = productAdapter
+        }
+
+        productViewModel.error.observe(viewLifecycleOwner) { error ->
+            Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+        }
+
+
+        //Top Products
+        topProducts = ProductAdapter(emptyList())
+        binding.topRecyclerView.apply {
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            adapter = topProducts
+            isNestedScrollingEnabled = false
+        }
+        //Fetch Top Products
+        productViewModel.fetchTopRatedProducts()
+
+        productViewModel.topRatedProducts.observe(viewLifecycleOwner) { products ->
+            topProducts.updateProducts(products)
+
+        }
+
+
+
+
+
     }
 }

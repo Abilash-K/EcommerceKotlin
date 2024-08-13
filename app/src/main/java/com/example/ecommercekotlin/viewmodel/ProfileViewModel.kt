@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.ecommercekotlin.model.user.RefreshTokenRequest
 import com.example.ecommercekotlin.model.user.TokenResponse
 import com.example.ecommercekotlin.model.user.User
 import com.example.ecommercekotlin.server.ApiClient
@@ -88,9 +89,9 @@ class ProfileViewModel : ViewModel() {
 
         if (refreshToken != null) {
             // Make a request to refresh the token
-            val requestBody = mapOf(
-                "refreshToken" to refreshToken,
-                "expiresInMins" to 60
+            val requestBody = RefreshTokenRequest(
+                refreshToken = refreshToken,
+                expiresInMins = 60
             )
 
             ApiClient.apiService.refreshToken(requestBody).enqueue(object : Callback<TokenResponse> {
