@@ -64,7 +64,7 @@
         android:gravity="center"
         android:text="Emily"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -90,7 +90,7 @@
         android:gravity="center"
         android:text="Emily"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userFirstname" />
@@ -116,7 +116,7 @@
         android:gravity="center"
         android:text="Emily"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
