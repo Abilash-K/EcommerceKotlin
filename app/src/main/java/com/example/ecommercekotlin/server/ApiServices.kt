@@ -5,6 +5,7 @@ import com.example.ecommercekotlin.model.login.LoginRequest
 import com.example.ecommercekotlin.model.login.LoginResponse
 import com.example.ecommercekotlin.model.product.Product
 import com.example.ecommercekotlin.model.product.ProductResponse
+import com.example.ecommercekotlin.model.user.TokenResponse
 import com.example.ecommercekotlin.model.user.User
 import retrofit2.Call
 import retrofit2.http.Body
@@ -23,4 +24,10 @@ interface ApiServices {
 
     @GET("user/me")
     fun getUserDetails(@Header("Authorization") token: String): Call<User>
+
+    @POST("auth/refresh")
+    fun refreshToken(@Body request: Map<String, Any>): Call<TokenResponse>
+
 }
+
+

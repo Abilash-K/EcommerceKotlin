@@ -1,5 +1,6 @@
 package com.example.ecommercekotlin.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.example.ecommercekotlin.activity.LoginActivity
 import com.example.ecommercekotlin.databinding.FragmentProfileBinding
 import com.example.ecommercekotlin.model.user.User
+import com.example.ecommercekotlin.utility.TokenManager
 import com.example.ecommercekotlin.viewmodel.ProfileViewModel
 
 class ProfileFragment : Fragment() {
@@ -43,6 +46,16 @@ class ProfileFragment : Fragment() {
         profileViewModel.error.observe(viewLifecycleOwner) { error ->
             // Handle the error (e.g., show a Toast or an error message in the UI)
             Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+        }
+
+        //logout
+        binding.logoutBtn.setOnClickListener {
+            // Clear the token and refresh token from SharedPreferences
+            TokenManager.clearTokens(requireContext())
+            //NavBack to Login Screen
+            val intent = Intent(requireActivity(), LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
         }
     }
 

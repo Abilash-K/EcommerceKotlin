@@ -27,6 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Category Type"
+        android:textSize="18sp"
         android:textAppearance="@style/onboarding_heading"
         app:layout_constraintBottom_toBottomOf="@+id/categoryBack"
         app:layout_constraintEnd_toEndOf="parent"
