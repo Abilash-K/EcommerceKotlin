@@ -16,9 +16,14 @@
         android:theme="@style/Theme.App.Starting"
         tools:targetApi="31">
         <activity
-            android:name=".activity.ProductListingActivity"
+            android:name=".activity.ProductDetailsActivity"
+            android:exported="false"
             android:theme="@style/Theme.EcommerceKotlin"
-            android:exported="false" />
+            />
+        <activity
+            android:name=".activity.ProductListingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EcommerceKotlin" />
         <activity
             android:name=".activity.HomeActivity"
             android:exported="false"

@@ -35,6 +35,9 @@ interface ApiServices {
     @GET("products?sortBy=rating&order=desc")
     fun getTopRatedProducts(): Call<ProductResponse>
 
+    @GET("products/{id}")
+    fun getProductsById(@Path("id") id: Int): Call<Product>
+
 }
 
 
