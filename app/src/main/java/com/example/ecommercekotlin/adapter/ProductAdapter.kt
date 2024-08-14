@@ -3,8 +3,10 @@ package com.example.ecommercekotlin.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.ecommercekotlin.R
@@ -18,6 +20,7 @@ class ProductAdapter(private var products: List<Product>) : RecyclerView.Adapter
         val productBrand: TextView = itemView.findViewById(R.id.productBrand)
         val productName: TextView = itemView.findViewById(R.id.productName)
         val productPrice: TextView = itemView.findViewById(R.id.productPrice)
+        val productCard: CardView = itemView.findViewById(R.id.productCardView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -30,6 +33,8 @@ class ProductAdapter(private var products: List<Product>) : RecyclerView.Adapter
         holder.productBrand.text = product.brand
         holder.productName.text = product.title
         holder.productPrice.text = "$ ${product.price}"
+        holder.productCard.startAnimation(AnimationUtils.loadAnimation(holder.itemView.context,R.anim.card_animation))
+
 
         Glide.with(holder.itemView.context)
             .load(product.thumbnail)

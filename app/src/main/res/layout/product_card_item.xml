@@ -4,10 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:focusable="true"
     app:cardBackgroundColor="@color/black"
+    android:id="@+id/productCardView"
     app:cardElevation="8dp"
     android:layout_margin="8dp"
     app:cardCornerRadius="16dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
