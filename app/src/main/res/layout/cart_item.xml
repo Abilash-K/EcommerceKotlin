@@ -6,13 +6,12 @@
     android:layout_height="wrap_content"
     android:focusable="true"
     app:cardBackgroundColor="@color/black"
-    android:id="@+id/productCardView"
+    android:id="@+id/cartItem"
     app:cardElevation="8dp"
     android:layout_margin="8dp"
     app:cardCornerRadius="16dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
-    android:stateListAnimator="@animator/card_animation"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
