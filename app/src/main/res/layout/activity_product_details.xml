@@ -33,137 +33,156 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/productsDetailsBack" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/productCarasoul"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productsDetailsBack" />
-
-
-    <LinearLayout
-        android:id="@+id/indicatorContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/productCarasoul"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-
-    <androidx.cardview.widget.CardView
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="-80dp"
-        app:cardBackgroundColor="#080808"
-        app:cardCornerRadius="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/indicatorContainer">
+        app:layout_constraintTop_toBottomOf="@+id/productsDetailsBack">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/productBrand"
-                android:layout_width="wrap_content"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/productCarasoul"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/inter_semibold"
-                android:text="Product Brand"
-                android:textColor="#B6B6B6"
-                android:textSize="12sp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/productName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/inter_semibold"
-                android:text="Product Name"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productBrand" />
 
-            <TextView
-                android:id="@+id/productPrice"
+            <LinearLayout
+                android:id="@+id/indicatorContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/inter_semibold"
-                android:text="Price"
-                android:textColor="@color/primaryColor"
-                android:textSize="14sp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productName" />
+                app:layout_constraintTop_toBottomOf="@id/productCarasoul" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:fontFamily="@font/inter_semibold"
-                android:text="Description"
-                android:textAppearance="@style/onboarding_heading"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productPrice" />
 
-            <TextView
-                android:id="@+id/productDescription"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:textAppearance="@style/onboarding_body"
-                android:textColor="@color/white"
-                android:textSize="14sp"
+                app:cardBackgroundColor="#080808"
+                app:cardCornerRadius="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintTop_toBottomOf="@+id/indicatorContainer">
 
-            <TextView
-                android:id="@+id/reviewTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:fontFamily="@font/inter_semibold"
-                android:text="Product Reviews"
-                android:textAppearance="@style/onboarding_heading"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productDescription" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reviewTitle"
-                android:layout_marginTop="8dp"
-                />
+                    <TextView
+                        android:id="@+id/productBrand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="Product Brand"
+                        android:textColor="#B6B6B6"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
+                    <TextView
+                        android:id="@+id/productName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="Product Name"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/productBrand" />
+
+                    <TextView
+                        android:id="@+id/productPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="Price"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/productName" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="32dp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="Description"
+                        android:textAppearance="@style/onboarding_heading"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/productPrice" />
+
+                    <TextView
+                        android:id="@+id/productDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:textAppearance="@style/onboarding_body"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                    <TextView
+                        android:id="@+id/reviewTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="32dp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="Product Reviews"
+                        android:textAppearance="@style/onboarding_heading"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/productDescription" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/reviewRecycler"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/reviewTitle" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
 
 
 

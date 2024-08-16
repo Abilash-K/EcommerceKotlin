@@ -23,6 +23,7 @@ class ProductAdapter(private var products: List<Product>) : RecyclerView.Adapter
         val productName: TextView = itemView.findViewById(R.id.productName)
         val productPrice: TextView = itemView.findViewById(R.id.productPrice)
         val productCard: CardView = itemView.findViewById(R.id.productCardView)
+        val productRating: TextView = itemView.findViewById(R.id.productRating)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -35,6 +36,7 @@ class ProductAdapter(private var products: List<Product>) : RecyclerView.Adapter
         holder.productBrand.text = product.brand
         holder.productName.text = product.title
         holder.productPrice.text = "$ ${product.price}"
+        holder.productRating.text = product.rating.toString()
         holder.productCard.startAnimation(AnimationUtils.loadAnimation(holder.itemView.context,R.anim.card_animation))
 
 
