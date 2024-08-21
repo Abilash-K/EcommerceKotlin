@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [CartItem::class], version = 1, exportSchema = false)
+@Database(entities = [CartItem::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun cartDao(): CartDao
@@ -20,7 +20,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "cart_database"
+                    "app_database"
                 ).build()
                 INSTANCE = instance
                 instance

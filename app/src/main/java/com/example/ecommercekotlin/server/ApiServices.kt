@@ -14,6 +14,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiServices {
 
@@ -37,6 +38,12 @@ interface ApiServices {
 
     @GET("products/{id}")
     fun getProductsById(@Path("id") id: Int): Call<Product>
+
+//    @GET("products/search?q={search}")
+//    fun getProductsBySearching(@Path("search") search: String): Call<ProductResponse>
+
+    @GET("products/search")
+    fun getProductsBySearching(@Query("q") search: String): Call<ProductResponse>
 
 }
 

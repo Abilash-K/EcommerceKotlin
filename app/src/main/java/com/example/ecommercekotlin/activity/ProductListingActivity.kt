@@ -25,7 +25,13 @@ class ProductListingActivity : AppCompatActivity() {
 
         //Set Header
         val category = intent.getStringExtra("CATEGORY_NAME") ?: "All Products"
-        binding.productHeading.text=category.replaceFirstChar {  it.uppercase() }
+        val searchText = intent.getStringExtra("SEARCH_STRING")
+
+        if (searchText != null){
+            binding.productHeading.text = "Search Result for  \"$searchText\""
+        }else{
+            binding.productHeading.text=category.replaceFirstChar {  it.uppercase() }
+        }
 
         //Back Button
         binding.categoryBack.setOnClickListener {
@@ -58,8 +64,12 @@ class ProductListingActivity : AppCompatActivity() {
         }
 
         //FetchProducts
-        viewModel.fetchProductsByCategory(category)
-
+        if(searchText != null){
+         //fetch the search Text
+            viewModel.fetchProductsBySearch(searchText)
+        }else {
+            viewModel.fetchProductsByCategory(category)
+        }
     }
 
 

@@ -1,13 +1,11 @@
 package com.example.ecommercekotlin.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ecommercekotlin.model.product.Product
 import com.example.ecommercekotlin.model.product.ProductResponse
 import com.example.ecommercekotlin.server.ApiClient
-import com.example.ecommercekotlin.server.ApiServices
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,6 +37,26 @@ class ProductListingViewModel : ViewModel() {
                 _isLoading.value = false
                 _error.value = t.message
             }
+        })
+    }
+
+    fun fetchProductsBySearch(query : String){
+        _isLoading.value = true
+        ApiClient.apiService.getProductsBySearching(query).enqueue(object  : Callback<ProductResponse>{
+            override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _products.value = response.body()?.products ?: emptyList()
+                } else {
+                    _error.value = "Failed to load products."
+                }
+            }
+
+            override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+                _isLoading.value = false
+                _error.value = t.message
+            }
+
         })
     }
 }

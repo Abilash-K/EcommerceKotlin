@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryBlack"
+    android:fitsSystemWindows="true"
+    tools:context=".activity.SearchActivity">
+
+    <EditText
+        android:id="@+id/searchInput"
+        android:layout_width="350dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/search_input"
+        android:drawableStart="@drawable/search_icon"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/sora"
+        android:hint="@string/search_for_products"
+        android:transitionName="searchTransition"
+        android:inputType="text"
+        android:paddingStart="10dp"
+        android:imeOptions="actionDone"
+        android:textColorHint="#636363"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/featuredSearchHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Featured : "
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchInput" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/featuredSearchRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/featuredSearchHeading" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,16 +1,25 @@
 package com.example.ecommercekotlin.fragment
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.ecommercekotlin.R
+import com.example.ecommercekotlin.activity.SearchActivity
 import com.example.ecommercekotlin.adapter.ProductAdapter
 import com.example.ecommercekotlin.databinding.FragmentHomeBinding
 import com.example.ecommercekotlin.viewmodel.ProductViewModel
@@ -33,6 +42,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -95,9 +105,26 @@ class HomeFragment : Fragment() {
 
         }
 
+        //SearchTransition
+        binding.searchInput.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                // Request focus and show the keyboard
+                binding.searchInput.requestFocus()
 
+                // Transition to SearchActivity immediately
+                val intent = Intent(requireContext(), SearchActivity::class.java)
+                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    requireActivity(),
+                    binding.searchInput, // The shared view
+                    "searchTransition" // The transition name
+                )
+                startActivity(intent, options.toBundle())
 
-
+                true
+            } else {
+                false
+            }
+        }
 
     }
 }
