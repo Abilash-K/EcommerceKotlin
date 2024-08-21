@@ -2,7 +2,6 @@ package com.example.ecommercekotlin.activity
 
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +12,11 @@ import com.example.ecommercekotlin.R
 import com.example.ecommercekotlin.adapter.ImageSliderAdapter
 import com.example.ecommercekotlin.adapter.ReviewAdapter
 import com.example.ecommercekotlin.databinding.ActivityProductDetailsBinding
+import com.example.ecommercekotlin.roomdb.AppDatabase
+import com.example.ecommercekotlin.roomdb.CartItem
+import com.example.ecommercekotlin.roomdb.CartRepository
+import com.example.ecommercekotlin.viewmodel.CartViewModel
+import com.example.ecommercekotlin.viewmodel.CartViewModelFactory
 import com.example.ecommercekotlin.viewmodel.ProductDetailsViewModel
 
 class ProductDetailsActivity : AppCompatActivity() {
@@ -22,6 +26,9 @@ class ProductDetailsActivity : AppCompatActivity() {
     private lateinit var viewModel: ProductDetailsViewModel
     // List to hold indicators
     private val indicators = ArrayList<View>()
+    //CartViewModel
+    private lateinit var cartViewModel: CartViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +43,15 @@ class ProductDetailsActivity : AppCompatActivity() {
             finish()
         }
 
+        // Initialize CartViewModel
+        val cartDao = AppDatabase.getInstance(this).cartDao()
+        val repository = CartRepository(cartDao)
+        val viewModelFactory = CartViewModelFactory(repository)
+        cartViewModel = ViewModelProvider(this, viewModelFactory)[CartViewModel::class.java]
+
+        //CartViewModel
+        cartViewModel.getCartItemById(productId)
+
         //ViewModel
         viewModel = ViewModelProvider(this)[ProductDetailsViewModel::class.java]
 
@@ -48,7 +64,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         //Observe
         viewModel.product.observe(this) { product ->
             binding.productName.text = product.title
-            binding.productPrice.text = "$ ${product.price.toString()}"
+            binding.productPrice.text = "$ ${product.price}"
             binding.productDescription.text = product.description
             binding.productBrand.text = product.brand
 
@@ -90,8 +106,34 @@ class ProductDetailsActivity : AppCompatActivity() {
             binding.reviewRecycler.adapter = reviewAdapter
 
 
+            //Cart Button
+            binding.addToCart.setOnClickListener {
+                // Check if the item is already in the cart
+                cartViewModel.cartItem.observe(this) { existingCartItem ->
+                    if (existingCartItem != null) {
+                        // Item exists, update the quantity
+                        existingCartItem.quantity++
+                        cartViewModel.update(existingCartItem)
+                    } else {
+                        // Item does not exist, insert a new one
+                        val cartItem = CartItem(
+                            product.id,
+                            product.title,
+                            product.brand,
+                            product.price,
+                            product.thumbnail,
+                            1
+                        )
+                        cartViewModel.insert(cartItem)
+                    }
+                    Toast.makeText(this, "Item Added To Cart", Toast.LENGTH_SHORT).show()
+                }
+            }
 
-        }
+
+
+
+            }
 
         //Error
         viewModel.error.observe(this) { errorMessage ->

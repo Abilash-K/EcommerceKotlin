@@ -2,30 +2,36 @@ package com.example.ecommercekotlin.roomdb
 
 import androidx.lifecycle.LiveData
 
-import android.content.Context
 
+class CartRepository(private val cartDao: CartDao) {
 
-class CartRepository(context: Context) {
-
-    private val cartDao: CartDao = AppDatabase.getInstance(context).cartDao()
-
-    suspend fun insertCartItem(cartItem: CartItem) {
+    // Insert a new cart item
+    suspend fun insert(cartItem: CartItem) {
         cartDao.insert(cartItem)
     }
 
-    suspend fun updateCartItem(cartItem: CartItem) {
+    // Update an existing cart item
+    suspend fun update(cartItem: CartItem) {
         cartDao.update(cartItem)
     }
 
-    suspend fun deleteCartItem(cartItem: CartItem) {
-        cartDao.delete(cartItem)
-    }
-
-    suspend fun getAllCartItems(): List<CartItem> {
+    // Get all cart items
+     fun getAllCartItems(): LiveData<List<CartItem>> {
         return cartDao.getAllCartItems()
     }
 
-    fun getCartItemsLiveData(): LiveData<List<CartItem>> {
-        return cartDao.getCartItemsLiveData()
+    // Get a cart item by its product ID
+     suspend fun getCartItemById(id: Int): CartItem? {
+        return cartDao.getCartItemById(id)
+    }
+
+    // Delete a specific cart item
+    suspend fun delete(cartItem: CartItem) {
+        cartDao.delete(cartItem)
+    }
+
+    // Delete all cart items
+    suspend fun deleteAllCartItems() {
+        cartDao.deleteAllCartItems()
     }
 }

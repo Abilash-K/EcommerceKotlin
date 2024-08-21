@@ -72,6 +72,7 @@ dependencies {
 
     //Glide
     implementation("com.github.bumptech.glide:glide:4.15.1")
+    kapt("com.github.bumptech.glide:compiler:4.15.1")
 
     //Roomdb
     val room_version = "2.6.1"
