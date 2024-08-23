@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.ecommercekotlin.R
 import com.example.ecommercekotlin.activity.ProductDetailsActivity
 import com.example.ecommercekotlin.model.product.Product
@@ -37,7 +38,7 @@ class ProductAdapter(private var products: List<Product>) : RecyclerView.Adapter
         holder.productName.text = product.title
         holder.productPrice.text = "$ ${product.price}"
         holder.productRating.text = product.rating.toString()
-        holder.productCard.startAnimation(AnimationUtils.loadAnimation(holder.itemView.context,R.anim.card_animation))
+        //holder.productCard.startAnimation(AnimationUtils.loadAnimation(holder.itemView.context,R.anim.card_animation))
 
 
         //SetonClickListner
@@ -51,6 +52,7 @@ class ProductAdapter(private var products: List<Product>) : RecyclerView.Adapter
 
         Glide.with(holder.itemView.context)
             .load(product.thumbnail)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.productImg)
     }
 

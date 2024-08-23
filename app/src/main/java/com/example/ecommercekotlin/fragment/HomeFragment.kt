@@ -1,29 +1,26 @@
 package com.example.ecommercekotlin.fragment
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.ecommercekotlin.R
+import com.example.ecommercekotlin.activity.ProductDetailsActivity
 import com.example.ecommercekotlin.activity.SearchActivity
 import com.example.ecommercekotlin.adapter.ProductAdapter
 import com.example.ecommercekotlin.databinding.FragmentHomeBinding
 import com.example.ecommercekotlin.viewmodel.ProductViewModel
 import com.example.ecommercekotlin.viewmodel.ProfileViewModel
+import com.example.ecommercekotlin.viewmodel.RandomNumberViewModel
 
 class HomeFragment : Fragment() {
 
@@ -33,10 +30,13 @@ class HomeFragment : Fragment() {
     private lateinit var productAdapter: ProductAdapter
     private lateinit var topProducts : ProductAdapter
 
+    //Timer For Flash Sale ViewModel
+    private val randomNumberViewModel : RandomNumberViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment using view binding
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -68,6 +68,24 @@ class HomeFragment : Fragment() {
             // Handle the error (e.g., show a Toast)
             Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
         }
+
+        //Flash Sale CardView
+        randomNumberViewModel.timeLeft.observe(viewLifecycleOwner) { timeLeft ->
+            binding.timeLeft.text = "Time Left : $timeLeft"
+        }
+        // Observe the randomNumber LiveData
+
+        // Set the random number in the TextView
+        binding.cardView.setOnClickListener {
+            val randomNumber = randomNumberViewModel.randomNumber.value
+                //Pass The RandomNumber to Product Details Page
+                val intent = Intent(requireContext(), ProductDetailsActivity::class.java)
+                intent.putExtra("PRODUCT_ID", randomNumber)
+                startActivity(intent)
+            Toast.makeText(requireContext(), "Random Number: $randomNumber", Toast.LENGTH_SHORT).show()
+        }
+
+
 
         //setup Recycler View
         productAdapter = ProductAdapter(emptyList())
@@ -127,4 +145,13 @@ class HomeFragment : Fragment() {
         }
 
     }
+
+
+    override fun onPause() {
+        super.onPause()
+        randomNumberViewModel.saveStartTime()
+    }
+
+
+
 }
