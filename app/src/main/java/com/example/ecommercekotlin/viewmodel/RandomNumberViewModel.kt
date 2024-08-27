@@ -23,21 +23,28 @@ class RandomNumberViewModel(application: Application) : AndroidViewModel(applica
     private var timerDuration = 6 * 60 * 60 * 1000L // 6 hours in milliseconds
 
     init {
-        calculateRemainingTime()
+        startTimerFromStoredTime()
+        generateRandomNumber()
     }
 
-    private fun calculateRemainingTime() {
-        val currentTime = System.currentTimeMillis()
-        val startTime = prefs.getLong("startTime", currentTime)
-        val elapsedTime = currentTime - startTime
-        val remainingTime = timerDuration - elapsedTime
-
-        if (remainingTime > 0) {
-            startTimer(remainingTime)
-        } else {
-            // If the timer has already finished, generate a new random number and restart the timer
-            generateRandomNumber()
+    private fun startTimerFromStoredTime() {
+        val startTime = prefs.getLong("startTime", 0L)
+        if (startTime == 0L) {
+            // First time starting the timer, save the start time
+            saveStartTime()
             startTimer(timerDuration)
+        } else {
+            val elapsedTime = System.currentTimeMillis() - startTime
+            val remainingTime = timerDuration - elapsedTime
+
+            if (remainingTime > 0) {
+                startTimer(remainingTime)
+            } else {
+                // If the timer has already finished, generate a new random number and restart the timer
+                generateRandomNumber()
+                saveStartTime()
+                startTimer(timerDuration)
+            }
         }
     }
 
@@ -51,6 +58,7 @@ class RandomNumberViewModel(application: Application) : AndroidViewModel(applica
 
             override fun onFinish() {
                 generateRandomNumber()
+                saveStartTime()
                 startTimer(timerDuration) // Restart the timer with 6 hours
             }
         }.start()
@@ -67,7 +75,7 @@ class RandomNumberViewModel(application: Application) : AndroidViewModel(applica
         _randomNumber.value = (1..190).random()
     }
 
-    fun saveStartTime() {
+    private fun saveStartTime() {
         prefs.edit().putLong("startTime", System.currentTimeMillis()).apply()
     }
 }

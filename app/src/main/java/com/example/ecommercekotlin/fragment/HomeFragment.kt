@@ -146,12 +146,4 @@ class HomeFragment : Fragment() {
 
     }
 
-
-    override fun onPause() {
-        super.onPause()
-        randomNumberViewModel.saveStartTime()
-    }
-
-
-
 }
