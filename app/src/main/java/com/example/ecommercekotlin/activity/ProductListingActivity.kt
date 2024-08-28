@@ -48,7 +48,16 @@ class ProductListingActivity : AppCompatActivity() {
 
         //Observe
         viewModel.products.observe(this) { products ->
-            productAdapter.updateProducts(products)
+            //If products is empty just display the emptyPage
+            if (products.isEmpty()){
+                binding.emptyImage.visibility = View.VISIBLE
+                binding.productListingRecycle.visibility = View.GONE
+            }else{
+                binding.emptyImage.visibility = View.GONE
+                binding.productListingRecycle.visibility = View.VISIBLE
+                productAdapter.updateProducts(products)
+            }
+
         }
 
         //Loading

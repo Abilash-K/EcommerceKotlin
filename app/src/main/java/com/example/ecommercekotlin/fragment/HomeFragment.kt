@@ -11,13 +11,21 @@ import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.ecommercekotlin.R
 import com.example.ecommercekotlin.activity.ProductDetailsActivity
 import com.example.ecommercekotlin.activity.SearchActivity
 import com.example.ecommercekotlin.adapter.ProductAdapter
 import com.example.ecommercekotlin.databinding.FragmentHomeBinding
+import com.example.ecommercekotlin.roomdb.AppDatabase
+import com.example.ecommercekotlin.roomdb.CartRepository
+import com.example.ecommercekotlin.viewmodel.CartViewModel
+import com.example.ecommercekotlin.viewmodel.CartViewModelFactory
 import com.example.ecommercekotlin.viewmodel.ProductViewModel
 import com.example.ecommercekotlin.viewmodel.ProfileViewModel
 import com.example.ecommercekotlin.viewmodel.RandomNumberViewModel
@@ -29,6 +37,8 @@ class HomeFragment : Fragment() {
     private val productViewModel: ProductViewModel by viewModels()
     private lateinit var productAdapter: ProductAdapter
     private lateinit var topProducts : ProductAdapter
+    //CartViewModel
+    private lateinit var cartViewModel: CartViewModel
 
     //Timer For Flash Sale ViewModel
     private val randomNumberViewModel : RandomNumberViewModel by viewModels()
@@ -45,6 +55,33 @@ class HomeFragment : Fragment() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //CartButton navigate to cart fragment using nav-graph
+        binding.homeCart.setOnClickListener {
+            val navController = findNavController()
+            val navOptions = NavOptions.Builder()
+                .setPopUpTo(R.id.nav_home, true)
+                .build()
+            navController.navigate(R.id.action_homeFragment_to_cartFragment, null, navOptions)
+        }
+        // Initialize CartDao, Repository, and ViewModelFactory
+        val application = requireNotNull(this.activity).application
+        val cartDao = AppDatabase.getInstance(application).cartDao()
+        val repository = CartRepository(cartDao)
+        val viewModelFactory = CartViewModelFactory(repository)
+        // Initialize CartViewModel
+        cartViewModel = ViewModelProvider(this, viewModelFactory)[CartViewModel::class.java]
+        //CartViewModel for No Of Cart Items
+        cartViewModel.allCartItems.observe(viewLifecycleOwner) { cartItems ->
+            val cartItemCount = cartItems.size
+            //Hide the Text if no items in cart
+            if (cartItemCount == 0) {
+                binding.cartItemCount.visibility = View.GONE
+            } else {
+                binding.cartItemCount.visibility = View.VISIBLE
+                binding.cartItemCount.text = cartItemCount.toString()
+            }
+        }
 
         // Fetch user details
         profileViewModel.fetchUserDetails(requireContext())

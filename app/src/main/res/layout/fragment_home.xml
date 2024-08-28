@@ -255,4 +255,18 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <TextView
+        android:id="@+id/cartItemCount"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:background="@drawable/round_background_text"
+        android:gravity="center"
+        android:text="0"
+        android:textAppearance="@style/onboarding_heading"
+        android:textColor="#000000"
+        android:textSize="8sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/homeCart"
+        app:layout_constraintEnd_toEndOf="@+id/homeCart" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
