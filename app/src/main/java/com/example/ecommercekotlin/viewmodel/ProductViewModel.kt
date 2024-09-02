@@ -21,6 +21,8 @@ class ProductViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
+
+
     // Existing fetchProducts function
     fun fetchProducts(category: String) {
         ApiClient.apiService.getProductsByCategory(category).enqueue(object :
@@ -55,4 +57,6 @@ class ProductViewModel : ViewModel() {
             }
         })
     }
+
+
 }

@@ -45,6 +45,9 @@ interface ApiServices {
     @GET("products/search")
     fun getProductsBySearching(@Query("q") search: String): Call<ProductResponse>
 
+    @GET("products")
+    fun getProducts(@Query("page") page: Int, @Query("limit") limit: Int): Call<ProductResponse>
+
 }
 
 

@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.ecommercekotlin.R
 import com.example.ecommercekotlin.activity.ProductDetailsActivity
+import com.example.ecommercekotlin.activity.ProductListingActivity
 import com.example.ecommercekotlin.activity.SearchActivity
 import com.example.ecommercekotlin.adapter.ProductAdapter
 import com.example.ecommercekotlin.databinding.FragmentHomeBinding
@@ -179,6 +180,17 @@ class HomeFragment : Fragment() {
             } else {
                 false
             }
+        }
+
+        //See All Button
+        binding.electronicsViewAll.setOnClickListener {
+            val intent = Intent(requireContext(), ProductListingActivity::class.java)
+            startActivity(intent)
+        }
+        //See All Top Products
+        binding.topProductsViewAll.setOnClickListener {
+            val intent = Intent(requireContext(), ProductListingActivity::class.java)
+            startActivity(intent)
         }
 
     }
