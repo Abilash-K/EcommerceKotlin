@@ -6,6 +6,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.ecommercekotlin.adapter.ProductAdapter
 import com.example.ecommercekotlin.databinding.ActivityProductListingBinding
 import com.example.ecommercekotlin.viewmodel.ProductListingViewModel
@@ -27,6 +29,8 @@ class ProductListingActivity : AppCompatActivity() {
         val category = intent.getStringExtra("CATEGORY_NAME") ?: "All Products"
         val searchText = intent.getStringExtra("SEARCH_STRING")
 
+
+
         if (searchText != null){
             binding.productHeading.text = "Search Result for  \"$searchText\""
         }else{
@@ -36,6 +40,24 @@ class ProductListingActivity : AppCompatActivity() {
         //Back Button
         binding.categoryBack.setOnClickListener {
             finish()
+        }
+
+        if(category == "All Products"){
+            binding.productListingRecycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                    val visibleItemCount = layoutManager.childCount
+                    val totalItemCount = layoutManager.itemCount
+                    val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+                    if (!viewModel.isLoading.value!! && (visibleItemCount + firstVisibleItemPosition >= totalItemCount)
+                        && firstVisibleItemPosition >= 0) {
+                        viewModel.fetchAllProducts()
+                    }
+                }
+            })
         }
 
         //Adapter
@@ -72,11 +94,15 @@ class ProductListingActivity : AppCompatActivity() {
             }
         }
 
-        //FetchProducts
+        //FetchProducts check if search text is there or not and category is ALl Products
+
         if(searchText != null){
          //fetch the search Text
             viewModel.fetchProductsBySearch(searchText)
-        }else {
+        }else if (category == "All Products") {
+           //fetch All Products
+            viewModel.fetchAllProducts()
+        }else{
             viewModel.fetchProductsByCategory(category)
         }
     }

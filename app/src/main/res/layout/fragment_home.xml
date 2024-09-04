@@ -182,6 +182,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
             <TextView
+                android:id="@+id/electronicsViewAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -222,6 +223,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/homeRecyclerView" />
 
             <TextView
+                android:id="@+id/topProductsViewAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"

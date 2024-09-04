@@ -21,6 +21,10 @@ class ProductListingViewModel : ViewModel() {
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> get() = _error
 
+    //All projects Var
+    private var currentPage = 1
+    private var pageSize = 30
+
     fun fetchProductsByCategory(category: String) {
         _isLoading.value = true
         ApiClient.apiService.getProductsByCategory(category).enqueue(object : Callback<ProductResponse> {
@@ -58,5 +62,32 @@ class ProductListingViewModel : ViewModel() {
             }
 
         })
+    }
+
+    //fetch All Products
+    fun fetchAllProducts(){
+
+        _isLoading.value = true
+        //Api
+        ApiClient.apiService.getProducts(page = currentPage, limit = pageSize).enqueue(object : Callback<ProductResponse>{
+            override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
+                //if success fetch data
+                if (response.isSuccessful) {
+                    response.body()?.let { productResponse ->
+                        val updatedList = _products.value.orEmpty() + productResponse.products
+                        _products.value = updatedList
+                        currentPage++
+                    }
+                }
+                _isLoading.value = false
+            }
+
+            override fun onFailure(c: Call<ProductResponse>, t: Throwable) {
+                _error.value = t.message
+                _isLoading.value = false
+            }
+
+        })
+
     }
 }
