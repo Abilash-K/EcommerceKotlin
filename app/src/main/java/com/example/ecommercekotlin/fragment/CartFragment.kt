@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.lottie.LottieAnimationView
 import com.example.ecommercekotlin.R
@@ -41,6 +43,17 @@ class CartFragment : Fragment() {
         val cartDao = AppDatabase.getInstance(application).cartDao()
         val repository = CartRepository(cartDao)
         val viewModelFactory = CartViewModelFactory(repository)
+
+        //Back to Home Fragment
+        binding.cartBack.setOnClickListener {
+            //Go to the Home Fragment using the nav graph
+            val navController = findNavController()
+            val navOptions = NavOptions.Builder()
+                .setPopUpTo(R.id.nav_cart, true)
+                .build()
+            navController.navigate(R.id.action_nav_cart_to_nav_home, null, navOptions)
+
+        }
 
         // Initialize CartViewModel
         cartViewModel = ViewModelProvider(this, viewModelFactory)[CartViewModel::class.java]

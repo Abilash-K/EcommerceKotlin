@@ -11,15 +11,22 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.example.ecommercekotlin.R
 import com.example.ecommercekotlin.utility.TokenManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
 
 class HomeActivity : AppCompatActivity() {
     //nacController
     private lateinit var navController: NavController
+    private lateinit var analytics: FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_home)
+        // Obtain the FirebaseAnalytics instance.
+        analytics = Firebase.analytics
+
 
 
 
