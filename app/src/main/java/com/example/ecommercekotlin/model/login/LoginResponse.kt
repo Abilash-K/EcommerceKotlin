@@ -8,6 +8,6 @@ data class LoginResponse(
     val lastName : String,
     val gender : String,
     val image : String,
-    val token : String,
+    val accessToken : String,
     val refreshToken : String
 )

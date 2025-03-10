@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
             //save token
-            TokenManager.saveTokens(this,response.token,response.refreshToken)
+            TokenManager.saveTokens(this,response.accessToken,response.refreshToken)
 
             //navigate
             val intent = Intent(this, HomeActivity::class.java)
